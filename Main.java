@@ -31,13 +31,43 @@ class DemoScanline extends JPanel {
         super.paint(g); // Call super's paint to handle background
         g.setColor(Color.BLACK); // Set drawing color
         fill(g);
+        fillt(g);
+    }
+
+    void fillt(Graphics g){
+        int x1 = 50, y1 = 150,
+                x2 = 150, y2 = 50,
+                x3 = 250, y3 = 150;
+
+        DDALINE(g, x1, y1, x2, y2);
+        DDALINE(g, x2, y2, x3, y3);
+        DDALINE(g, x3, y3, x1, y1);
+
+        for (int i = 0; i < num ; i++) {
+            LE[i] = num;
+            RE[i] = 0;
+        }
+
+
+        fillscanline(x1,y1,x2,y2);
+        fillscanline(x2,y2,x3,y3);
+        fillscanline(x3, y3, x1, y1);
+
+
+        for (int y=0; y<num  ; y++) {
+            for (int x=LE[y]; x<RE[y] ; x++) {
+                g.fillOval(x,y,2,2);
+            }
+        }
+
     }
 
     void fill(Graphics g) {
-        int x1 = 50, y1 = 150,
-                x2 = 100, y2 = 150,
-                x3 = 100, y3 = 50,
-                x4 = 50, y4 = 50;
+        int tempadd = 75;
+        int x1 = 50+tempadd, y1 = 150+tempadd,
+                x2 = 100+tempadd, y2 = 150+tempadd,
+                x3 = 100+tempadd, y3 = 50+tempadd,
+                x4 = 50+tempadd, y4 = 50+tempadd;
 
         DDALINE(g, x1, y1, x2, y2);
         DDALINE(g, x2, y2, x3, y3);
@@ -87,6 +117,7 @@ class DemoScanline extends JPanel {
             x+=M;
         }
     }
+
     void DDALINE(Graphics g, int x1, int y1, int x2, int y2) {
         int dx = x2 - x1;
         int dy = y2 - y1;
